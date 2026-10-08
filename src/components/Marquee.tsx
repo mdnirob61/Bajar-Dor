@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import MarqueeText from "react-marquee-text";
 
@@ -34,45 +35,48 @@ const Marquee = async () => {
                     const isDown = item.change.dir === "down";
 
                     return (
-                        <span
-                            key={item.id}
-                            className="inline-flex items-center gap-2 mx-6 whitespace-nowrap text-sm">
-                            {/* Emoji */}
-                            <span>{item.image}</span>
-
-                            {/* Product name */}
-                            <span className="font-semibold">
-                                {item.nameBn}
-                            </span>
-
-                            {/* Today's price */}
-                            <span>
-                                {item.today} টাকা/{item.unit}
-                            </span>
-
-                            {/* Price change */}
+                        <Link key={item.id}
+                            href={`/product/${item.id}`}
+                        >
                             <span
-                                className={`font-semibold ${isUp
+                                className="inline-flex items-center gap-2 mx-6 whitespace-nowrap text-sm hover:underline">
+                                {/* Emoji */}
+                                <span>{item.image}</span>
+
+                                {/* Product name */}
+                                <span className="font-semibold">
+                                    {item.nameBn}
+                                </span>
+
+                                {/* Today's price */}
+                                <span>
+                                    {item.today} টাকা/{item.unit}
+                                </span>
+
+                                {/* Price change */}
+                                <span
+                                    className={`font-semibold ${isUp
                                         ? "text-red-500"
                                         : isDown
                                             ? "text-green-600"
                                             : "text-gray-500"
-                                    }`}
-                            >
-                                {isUp
-                                    ? `▲ ${item.change.pct}%`
-                                    : isDown
-                                        ? `▼ ${item.change.pct}%`
-                                        : `— ${item.change.pct}%`}
-                            </span>
+                                        }`}
+                                >
+                                    {isUp
+                                        ? `▲ ${item.change.pct}%`
+                                        : isDown
+                                            ? `▼ ${item.change.pct}%`
+                                            : `— ${item.change.pct}%`}
+                                </span>
 
-                            {/* Separator */}
-                            <span className="text-gray-400 font-bold text-3xl">•</span>
-                        </span>
+                                {/* Separator */}
+                                <span className="text-gray-400 font-bold text-3xl">•</span>
+                            </span>
+                        </Link>
                     );
                 })}
-            </MarqueeText>
-        </div>
+            </MarqueeText >
+        </div >
     );
 };
 

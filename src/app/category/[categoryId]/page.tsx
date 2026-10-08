@@ -1,5 +1,6 @@
 import React from "react";
 import CategoryProducts from "@/components/CategoryProducts";
+import { notFound } from "next/navigation";
 
 interface Product {
     id: number;
@@ -50,17 +51,7 @@ const CategoryProduct = async ({ params }: PageProps) => {
 
     // Empty category
     if (data.length === 0) {
-        return (
-            <main className="max-w-6xl mx-auto px-4 py-16 text-center">
-                <h1 className="text-3xl font-bold text-slate-800">
-                    কোনো পণ্য পাওয়া যায়নি
-                </h1>
-
-                <p className="text-slate-500 mt-3">
-                    এই ক্যাটাগরিতে বর্তমানে কোনো পণ্য নেই।
-                </p>
-            </main>
-        );
+        notFound();
     }
 
     return (

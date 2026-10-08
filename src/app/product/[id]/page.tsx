@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 interface Market {
     market: string;
@@ -75,27 +76,7 @@ const ProductDetails = async ({ params }: PageProps) => {
     const product = await getProduct(id);
 
     if (!product) {
-        return (
-            <main className="min-h-[70vh] flex flex-col items-center justify-center px-4 text-center">
-                <div className="text-6xl mb-5">
-                    🔎
-                </div>
-
-                <h1 className="text-3xl font-bold text-slate-800">
-                    পণ্য পাওয়া যায়নি
-                </h1>
-
-                <p className="text-slate-500 mt-3">
-                    আপনি যে পণ্যটি খুঁজছেন সেটি পাওয়া যায়নি।
-                </p>
-
-                <Link
-                    href="/"
-                    className="mt-6 bg-green-700 hover:bg-green-800 text-white px-5 py-3 rounded-xl transition">
-                    হোম পেজে ফিরে যান
-                </Link>
-            </main>
-        );
+        notFound();
     }
 
     const unitText = getUnitText(product.unit);
