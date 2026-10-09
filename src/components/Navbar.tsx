@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import NavbarLinks from "./NavbarLinks";
+import UserInfo from "./UserInfo";
 
 const Navbar = async () => {
     // "use cache";
@@ -54,17 +55,7 @@ const Navbar = async () => {
                     </div>
 
                     {/* Auth Buttons */}
-                    <div className="flex gap-2 sm:gap-4 items-center">
-
-                        <button className="hover:bg-green-200 py-1.5 px-2 sm:py-2 sm:px-3 text-sm sm:text-base font-semibold hover:rounded-xl cursor-pointer">
-                            সাইন ইন
-                        </button>
-
-                        <button className="bg-green-700 py-1.5 px-2 sm:py-2 sm:px-3 text-sm sm:text-base text-white rounded-xl cursor-pointer">
-                            সাইন আপ
-                        </button>
-
-                    </div>
+                    <UserInfo></UserInfo>
                 </div>
             </header>
 
