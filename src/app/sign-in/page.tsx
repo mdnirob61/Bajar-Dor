@@ -32,11 +32,18 @@ const SignInPage = () => {
         // console.log(data)
     }
 
+    const handleGithubSignIn = async () => {
+        const data = await signIn.social({
+            provider: "github",
+        })
+        // console.log(data)
+    }
+
     return (
         <div className='bg-slate-100 flex flex-col items-center py-10'>
             <h1 className='font-bold text-3xl'>সাইন ইন</h1>
             <p className='text-[0.9rem] text-slate-700 py-2 mb-3'>বিস্তারিত দাম, বাজার তুলনা ও প্রোফাইল দেখতে অ্যাকাউন্টে ঢুকুন।</p>
-            <div className='bg-white rounded-b-xl px-6 py-8'>
+            <div className='bg-white rounded-xl px-6 py-8'>
                 <form onSubmit={onSubmit}>
                     <fieldset className="fieldset w-xs">
 
@@ -54,7 +61,7 @@ const SignInPage = () => {
                     <div className='flex gap-2'>
                         <button onClick={handleGoogleSignIn} className='border border-slate-300 rounded-xl p-3 font-semibold cursor-pointer'>
                             Google দিয়ে চালিয়ে যান</button>
-                        <button className='border border-slate-300 rounded-xl p-3 font-semibold cursor-pointer'>
+                        <button onClick={handleGithubSignIn} className='border border-slate-300 rounded-xl p-3 font-semibold cursor-pointer'>
                             GitHub দিয়ে চালিয়ে যান</button>
                     </div>
                     <p className='text-slate-800 pt-5'>অ্যাকাউন্ট নেই? <Link href={'/sign-up'} className='text-green-700 cursor-pointer'>সাইন আপ করুন</Link></p>

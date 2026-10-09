@@ -39,11 +39,18 @@ const SignUpPage = () => {
         // console.log(data)
     }
 
+    const handleGithubSignIn = async () => {
+            const data = await signIn.social({
+                provider: "github",
+            })
+            // console.log(data)
+        }
+
     return (
         <div className='bg-slate-100 flex flex-col items-center py-10'>
             <h1 className='font-bold text-3xl'>অ্যাকাউন্ট তৈরি করুন</h1>
             <p className='text-[0.9rem] text-slate-700 py-2 mb-3'>বিনা খরচে সাইন আপ করে সব বিস্তারিত দাম দেখুন।</p>
-            <div className='bg-white rounded-b-xl px-6 py-8'>
+            <div className='bg-white rounded-xl px-6 py-8'>
                 <form onSubmit={onSubmit}>
                     <fieldset className="fieldset w-xs">
 
@@ -67,10 +74,10 @@ const SignUpPage = () => {
                     <div className='flex gap-2'>
                         <button onClick={handleGoogleSignIn} className='border border-slate-300 rounded-xl p-3 font-semibold cursor-pointer'>
                             Google দিয়ে চালিয়ে যান</button>
-                        <button className='border border-slate-300 rounded-xl p-3 font-semibold cursor-pointer'>
+                        <button onClick={handleGithubSignIn} className='border border-slate-300 rounded-xl p-3 font-semibold cursor-pointer'>
                             GitHub দিয়ে চালিয়ে যান</button>
                     </div>
-                    <p className='text-slate-800 pt-5'>অ্যাকাউন্ট নেই? <Link href={'/sign-up'} className='text-green-700 cursor-pointer'>সাইন আপ করুন</Link></p>
+                    <p className='text-slate-800 pt-5'>অ্যাকাউন্ট আছে? <Link href={'/sign-up'} className='text-green-700 cursor-pointer'>সাইন ইন করুন</Link></p>
                 </div>
             </div>
             <Link href={'/'} className='text-slate-500 text-[0.9rem] items-center mt-3'>← হোম পেজে ফিরে যান</Link>
