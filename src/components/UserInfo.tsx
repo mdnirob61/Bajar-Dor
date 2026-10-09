@@ -1,3 +1,4 @@
+
 "use client";
 import { signOut, useSession } from "@/lib/auth-client";
 import Image from "next/image";
@@ -28,7 +29,7 @@ const UserInfo = () => {
     // Loading state
     if (isPending) {
         return (
-            <div className="h-10 w-24 rounded-xl bg-slate-200 animate-pulse" />
+            <div className="h-9 w-20 sm:h-10 sm:w-24 rounded-xl bg-slate-200 animate-pulse" />
         );
     }
 
@@ -42,20 +43,20 @@ const UserInfo = () => {
                         onClick={() => setIsOpen(!isOpen)}
                         aria-expanded={isOpen}
                         aria-label="Open profile menu"
-                        className="flex items-center gap-2 rounded-xl px-2 py-1.5 hover:bg-slate-100 transition"
+                        className="flex items-center gap-1.5 sm:gap-2 rounded-xl px-1.5 py-1 sm:px-2 sm:py-1.5 hover:bg-slate-100 transition"
                     >
                         <div className="avatar">
-                            <div className="w-10 rounded-xl">
+                            <div className="w-8 sm:w-10 rounded-xl">
                                 {user.image ? (
                                     <Image
                                         alt={user.name || "User profile"}
                                         src={user.image}
                                         width={40}
                                         height={40}
-                                        className="h-10 w-10 rounded-xl object-cover"
+                                        className="h-8 w-8 sm:h-10 sm:w-10 rounded-xl object-cover"
                                     />
                                 ) : (
-                                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-green-100 font-bold text-green-800">
+                                    <div className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-green-100 font-bold text-green-800">
                                         {user.name?.charAt(0).toUpperCase() || "U"}
                                     </div>
                                 )}
@@ -66,7 +67,7 @@ const UserInfo = () => {
                             {user.name}
                         </span>
 
-                        <span className="text-xl text-slate-500">▾</span>
+                        <span className="text-lg sm:text-xl text-slate-500">▾</span>
                     </button>
 
                     {/* Dropdown */}
@@ -80,11 +81,11 @@ const UserInfo = () => {
                                 className="fixed inset-0 z-40 cursor-default"
                             />
 
-                            <div className="absolute right-0 top-full z-50 mt-3 w-64 rounded-2xl border border-slate-200 bg-white p-4 shadow-xl">
+                            <div className="absolute right-0 top-full z-50 mt-2 sm:mt-3 w-[min(16rem,calc(100vw-2rem))] rounded-2xl border border-slate-200 bg-white p-3 sm:p-4 shadow-xl">
 
                                 {/* User Details */}
                                 <div className="border-b border-slate-100 pb-3">
-                                    <p className="truncate font-semibold text-slate-800">
+                                    <p className="truncate text-sm sm:text-base font-semibold text-slate-800">
                                         {user.name}
                                     </p>
 
@@ -118,17 +119,17 @@ const UserInfo = () => {
                 </>
             ) : (
                 /* Sign In / Sign Up */
-                <div className="flex items-center gap-2 sm:gap-4">
+                <div className="flex items-center gap-1.5 sm:gap-4">
                     <Link
                         href="/sign-in"
-                        className="rounded-xl px-2 py-1.5 text-sm font-semibold transition hover:bg-green-100 sm:px-3 sm:py-2 sm:text-base"
+                        className="whitespace-nowrap rounded-xl px-2 py-1.5 text-xs font-semibold transition hover:bg-green-100 sm:px-3 sm:py-2 sm:text-base"
                     >
                         সাইন ইন
                     </Link>
 
                     <Link
                         href="/sign-up"
-                        className="rounded-xl bg-green-700 px-2 py-1.5 text-sm font-semibold text-white transition hover:bg-green-800 sm:px-3 sm:py-2 sm:text-base"
+                        className="whitespace-nowrap rounded-xl bg-green-700 px-2 py-1.5 text-xs font-semibold text-white transition hover:bg-green-800 sm:px-3 sm:py-2 sm:text-base"
                     >
                         সাইন আপ
                     </Link>
@@ -136,7 +137,6 @@ const UserInfo = () => {
             )}
         </div>
     );
-
 };
 
 export default UserInfo;
