@@ -33,18 +33,16 @@ const SignUpPage = () => {
     }
 
     const handleGoogleSignIn = async () => {
-        const data = await signIn.social({
+        await signIn.social({
             provider: "google",
         })
-        // console.log(data)
     }
 
     const handleGithubSignIn = async () => {
-            const data = await signIn.social({
-                provider: "github",
-            })
-            // console.log(data)
-        }
+        await signIn.social({
+            provider: "github",
+        })
+    }
 
     return (
         <div className='bg-slate-100 flex flex-col items-center py-10'>
@@ -77,7 +75,7 @@ const SignUpPage = () => {
                         <button onClick={handleGithubSignIn} className='border border-slate-300 rounded-xl p-3 font-semibold cursor-pointer'>
                             GitHub দিয়ে চালিয়ে যান</button>
                     </div>
-                    <p className='text-slate-800 pt-5'>অ্যাকাউন্ট আছে? <Link href={'/sign-up'} className='text-green-700 cursor-pointer'>সাইন ইন করুন</Link></p>
+                    <p className='text-slate-800 pt-5'>অ্যাকাউন্ট আছে? <Link href={'/sign-in'} className='text-green-700 cursor-pointer'>সাইন ইন করুন</Link></p>
                 </div>
             </div>
             <Link href={'/'} className='text-slate-500 text-[0.9rem] items-center mt-3'>← হোম পেজে ফিরে যান</Link>

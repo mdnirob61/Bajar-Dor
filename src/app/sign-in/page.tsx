@@ -26,17 +26,16 @@ const SignInPage = () => {
     }
 
     const handleGoogleSignIn = async () => {
-        const data = await signIn.social({
+        await signIn.social({
             provider: "google",
         })
         // console.log(data)
     }
 
     const handleGithubSignIn = async () => {
-        const data = await signIn.social({
+        await signIn.social({
             provider: "github",
         })
-        // console.log(data)
     }
 
     return (

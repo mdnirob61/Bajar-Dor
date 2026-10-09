@@ -1,11 +1,12 @@
 'use client';
 import { signOut, updateUser, useSession } from '@/lib/auth-client';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 const ProfilePage = () => {
 
-    const { data: session, isPending } = useSession();
+    const { data: session } = useSession();
     const user = session?.user;
 
     const handleUpdateProfile = async (e: React.SubmitEvent<HTMLElement>) => {
@@ -47,7 +48,7 @@ const ProfilePage = () => {
                         <p className='text-[0.8rem] text-slate-600'>{user?.email}</p>
                     </div>
                 </div>
-                <div>
+                <Link href={'/'}>
                     <button
                         type="button"
                         onClick={handleSignOut}
@@ -56,7 +57,7 @@ const ProfilePage = () => {
                         <span>↩</span>
                         <span>সাইন আউট</span>
                     </button>
-                </div>
+                </Link>
             </div>
 
             <form onSubmit={handleUpdateProfile} className="bg-white rounded-xl px-6 py-8 mt-5">
