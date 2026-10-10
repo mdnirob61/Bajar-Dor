@@ -5,10 +5,9 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
-import { redirect, useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 
 const SignUpPage = () => {
-    const router = useRouter();
 
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -43,7 +42,7 @@ const SignUpPage = () => {
             name: user.name as string,
             email: user.email as string,
             password,
-            // callbackURL: "/sign-in",
+            callbackURL: "/",
         });
 
         if (error) {
@@ -53,7 +52,7 @@ const SignUpPage = () => {
 
         if (data) {
             toast.success("সফলভাবে সাইন আপ হয়েছে!");
-            router.replace("/sign-in")
+            redirect("/")
         }
     };
 
