@@ -5,7 +5,8 @@ import React from "react";
 import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+
 
 const SignInPage = () => {
     const router = useRouter();
