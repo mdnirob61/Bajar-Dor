@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 import React from "react";
 import MarqueeText from "react-marquee-text";
@@ -22,6 +21,10 @@ interface Product {
     };
 }
 
+const toBengaliDigits = (value: number): string => {
+    return value.toLocaleString("bn-BD");
+};
+
 const Marquee = async () => {
     const res = await fetch(
         `${process.env.BACKEND_URL}/api/bazardor/products`
@@ -39,6 +42,10 @@ const Marquee = async () => {
                 {data.map((item) => {
                     const isUp = item.change.dir === "up";
                     const isDown = item.change.dir === "down";
+                    const percentage = toBengaliDigits(
+                        Math.abs(item.change.pct)
+                    );
+                    const price = toBengaliDigits(item.today);
 
                     return (
                         <Link
@@ -57,25 +64,25 @@ const Marquee = async () => {
                                     {item.nameBn}
                                 </span>
 
-                                {/* Today's price */}
+                                {/* Today's price and unit */}
                                 <span className="text-slate-700">
-                                    {item.today} টাকা/{item.unit}
+                                    {price} টাকা/{item.unit}
                                 </span>
 
                                 {/* Price change */}
                                 <span
                                     className={`font-semibold ${isUp
-                                            ? "text-red-500"
+                                            ? "text-green-600"
                                             : isDown
-                                                ? "text-green-600"
+                                                ? "text-red-500"
                                                 : "text-gray-500"
                                         }`}
                                 >
                                     {isUp
-                                        ? `▲ ${item.change.pct}%`
+                                        ? `▲ ${percentage}%`
                                         : isDown
-                                            ? `▼ ${item.change.pct}%`
-                                            : `— ${item.change.pct}%`}
+                                            ? `▼ ${percentage}%`
+                                            : `— ${percentage}%`}
                                 </span>
 
                                 {/* Separator */}

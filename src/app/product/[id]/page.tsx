@@ -52,11 +52,16 @@ const formatPrice = (value: number) => {
 };
 
 const getUnitText = (unit: string) => {
-    if (unit === "kg") return "প্রতি কেজি";
-    if (unit === "liter") return "প্রতি লিটার";
-    if (unit === "dozen") return "প্রতি ডজন";
+    const units: Record<string, string> = {
+        kg: "কেজি",
+        liter: "লিটার",
+        litre: "লিটার",
+        dozen: "ডজন",
+        piece: "পিস",
+        pcs: "পিস",
+    };
 
-    return "প্রতি পিস";
+    return units[unit.toLowerCase()] ?? unit;
 };
 
 const getProduct = async (id: string): Promise<Product | null> => {
@@ -138,7 +143,7 @@ const ProductDetails = async ({ params }: PageProps) => {
                                 </h1>
 
                                 <p className="text-sm text-slate-500 mt-1">
-                                    প্রতি {unitText} · {product.categoryNameBn}
+                                    {`প্রতি ${unitText}`} · {product.categoryNameBn}
                                 </p>
                                 <p
                                     className={`text-sm mt-2 ${isUp
@@ -188,10 +193,10 @@ const ProductDetails = async ({ params }: PageProps) => {
                                         : "text-slate-500"
                                     }`}>
                                 {isUp
-                                    ? `▲ ${toBanglaNumber(product.change.pct)}%`
+                                    ? `▲ ${toBanglaNumber(Math.abs(product.change.pct))}%`
                                     : isDown
-                                        ? `▼ ${toBanglaNumber(product.change.pct)}%`
-                                        : `— ${toBanglaNumber(product.change.pct)}%`}
+                                        ? `▼ ${toBanglaNumber(Math.abs(product.change.pct))}%`
+                                        : `— ${toBanglaNumber(Math.abs(product.change.pct))}%`}
                             </span>
                         </div>
                     </div>
