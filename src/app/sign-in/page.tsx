@@ -7,31 +7,38 @@ import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 
 const SignInPage = () => {
+
     const onSubmit = async (
         e: React.SubmitEvent<HTMLFormElement>
     ) => {
         e.preventDefault();
 
-        const formData = new FormData(e.currentTarget);
-        const user = Object.fromEntries(formData.entries());
+        try {
+            const formData = new FormData(e.currentTarget);
 
-        const { data, error } = await signIn.email({
-            email: user.email as string,
-            password: user.password as string,
-            callbackURL: "/",
-        });
-        
-        if (data) {
-            toast.success("সফলভাবে সাইন ইন হয়েছে!");
+            const email = formData.get("email") as string;
+            const password = formData.get("password") as string;
+
+            const { data, error } = await signIn.email({
+                email,
+                password,
+                callbackURL: "/",
+            });
+
+            if (error) {
+                toast.error(error.message || "সাইন ইন ব্যর্থ হয়েছে!");
+                return;
+            }
+
+            if (data) {
+                toast.success("সফলভাবে সাইন ইন হয়েছে!");
+            }
+        } catch (error) {
+            toast.error("সাইন ইন করার সময় সমস্যা হয়েছে!");
+            console.error(error);
         }
-
-        if (error) {
-            toast.error("সাইন ইন ব্যর্থ হয়েছে!");
-            return;
-        }
-
-        
     };
+
 
     const handleGoogleSignIn = async () => {
         await signIn.social({
