@@ -1,14 +1,13 @@
 "use client";
 import { signIn, signUp } from "@/lib/auth-client";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
+import { redirect } from "next/navigation";
 
 const SignUpPage = () => {
-    const router = useRouter();
 
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -53,7 +52,7 @@ const SignUpPage = () => {
 
         if (data) {
             toast.success("সফলভাবে সাইন আপ হয়েছে!");
-            router.push("/");
+            redirect("/")
         }
     };
 

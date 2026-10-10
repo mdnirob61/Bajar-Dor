@@ -20,15 +20,17 @@ const SignInPage = () => {
             password: user.password as string,
             callbackURL: "/",
         });
+        
+        if (data) {
+            toast.success("সফলভাবে সাইন ইন হয়েছে!");
+        }
 
         if (error) {
             toast.error("সাইন ইন ব্যর্থ হয়েছে!");
             return;
         }
 
-        if (data) {
-            toast.success("সফলভাবে সাইন ইন হয়েছে!");
-        }
+        
     };
 
     const handleGoogleSignIn = async () => {
