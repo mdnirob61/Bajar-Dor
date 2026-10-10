@@ -5,8 +5,10 @@ import React from "react";
 import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
+import { useRouter } from "next/router";
 
 const SignInPage = () => {
+    const router = useRouter();
 
     const onSubmit = async (
         e: React.SubmitEvent<HTMLFormElement>
@@ -22,7 +24,7 @@ const SignInPage = () => {
             const { data, error } = await signIn.email({
                 email,
                 password,
-                callbackURL: "/",
+                // callbackURL: "/",
             });
 
             if (error) {
@@ -32,6 +34,7 @@ const SignInPage = () => {
 
             if (data) {
                 toast.success("সফলভাবে সাইন ইন হয়েছে!");
+                router.replace("/")
             }
         } catch (error) {
             toast.error("সাইন ইন করার সময় সমস্যা হয়েছে!");

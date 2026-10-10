@@ -52,7 +52,7 @@ const SignUpPage = () => {
 
         if (data) {
             toast.success("সফলভাবে সাইন আপ হয়েছে!");
-            redirect("/")
+            redirect("/sign-in")
         }
     };
 
