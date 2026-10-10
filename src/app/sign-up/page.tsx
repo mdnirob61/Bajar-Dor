@@ -42,7 +42,7 @@ const SignUpPage = () => {
             name: user.name as string,
             email: user.email as string,
             password,
-            callbackURL: "/",
+            callbackURL: "/sign-in",
         });
 
         if (error) {
