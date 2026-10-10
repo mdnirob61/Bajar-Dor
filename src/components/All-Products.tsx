@@ -118,8 +118,8 @@ const AllProducts = async () => {
                                     {isUp
                                         ? `▲ ${toBanglaNumber(item.change.pct)}%`
                                         : isDown
-                                            ? `▼ ${toBanglaNumber(item.change.pct)}%`
-                                            : `— ${toBanglaNumber(item.change.pct)}%`}
+                                            ? `▼ ${toBanglaNumber(Math.abs(item.change.pct))}%`
+                                            : `--${toBanglaNumber(item.change.pct)}%`}
                                 </span>
 
                             </div>

@@ -103,7 +103,7 @@ const FallingValue = async () => {
 
                             {/* Change badge */}
                             <span className="text-xs font-semibold text-green-500 bg-green-50 px-2 py-1 rounded-full">
-                                ▼ {toBanglaNumber(item.change.pct)}%
+                                ▼ {toBanglaNumber(Math.abs(item.change.pct))}%
                             </span>
 
                         </div>
